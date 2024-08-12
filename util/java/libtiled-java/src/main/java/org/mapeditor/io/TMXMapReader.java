@@ -414,6 +414,15 @@ public class TMXMapReader {
             } else if ("polygon".equalsIgnoreCase(child.getNodeName()) || "polyline".equalsIgnoreCase(child.getNodeName())) {
                 Path2D.Double shape = new Path2D.Double();
                 final String pointsAttribute = getAttributeValue(child, "points");
+                if ("polygon".equalsIgnoreCase(child.getNodeName())) {
+                    final Polygon polygon = new Polygon();
+                    polygon.setPoints(pointsAttribute);
+                    obj.setPolygon(polygon);
+                } else if ("polyline".equalsIgnoreCase(child.getNodeName())) {
+                    final Polyline polyline = new Polyline();
+                    polyline.setPoints(pointsAttribute);
+                    obj.setPolyline(polyline);
+                }
                 StringTokenizer st = new StringTokenizer(pointsAttribute, ", ");
                 boolean firstPoint = true;
                 while (st.hasMoreElements()) {
@@ -428,7 +437,7 @@ public class TMXMapReader {
                 }
                 shape.closePath();
                 obj.setShape(shape);
-                obj.setBounds((Rectangle2D.Double) shape.getBounds2D());
+//                obj.setBounds((Rectangle2D.Double) shape.getBounds2D());
             } else if ("point".equalsIgnoreCase(child.getNodeName())) {
                 obj.setPoint(new Point());
             }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.5" tiledversion="1.7.2" orientation="isometric" renderorder="right-down" width="160" height="156" tilewidth="32" tileheight="16" infinite="0" nextlayerid="14" nextobjectid="251">
+ <imagelayer id="1" name="image" offsetx="-14" offsety="10"/>
+ <layer id="8" name="tiles" width="160" height="156">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgiD/r25IQAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMCvAYYPAAE=
+  </data>
+ </layer>
+ <group id="3" name="physics">
+  <objectgroup id="1" name="void">
+   <properties>
+    <property name="availableForBuilding" value="false"/>
+    <property name="color" value="0"/>
+    <property name="id" value="0"/>
+    <property name="locked" value="true"/>
+    <property name="name" value="void"/>
+    <property name="passable" value="false"/>
+   </properties>
+   <object id="103" x="2367.75" y="-0.75">
+    <polygon points="0,0 190.917,2.08333 193.583,255.417 131.583,253.417 129.583,191.417 64.9167,189.417 62.9167,60.75 -1.75,61.4167"/>
+   </object>
+  </objectgroup>
+ </group>
+ <objectgroup id="13" name="objectslayer">
+  <object id="250" x="2370.69" y="3.05051">
+   <polygon points="0,0 190.917,2.08333 193.583,255.417 131.583,253.417 129.583,191.417 64.9167,189.417 62.9167,60.75 -1.75,61.4167"/>
+  </object>
+ </objectgroup>
+</map>
