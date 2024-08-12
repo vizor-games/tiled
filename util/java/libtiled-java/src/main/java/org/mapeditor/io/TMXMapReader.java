@@ -535,6 +535,11 @@ public class TMXMapReader {
             g.setOpacity(Float.parseFloat(opacity));
         }
 
+        String tintColor = getAttributeValue(t, "tintcolor");
+        if (tintColor != null) {
+            g.setTintColor(tintColor);
+        }
+
         final int locked = getAttribute(t, "locked", 0);
         if (locked != 0) {
             g.setLocked(1);
@@ -581,9 +586,9 @@ public class TMXMapReader {
             return og;
         }
 
-        final int offsetX = getAttribute(t, "x", 0);
-        final int offsetY = getAttribute(t, "y", 0);
-        og.setOffset(offsetX, offsetY);
+        final double offsetX = getDoubleAttribute(t, "x", 0.0D);
+        final double offsetY = getDoubleAttribute(t, "y", 0.0D);
+        og.setOffset((int) offsetX, (int) offsetY);
 
         final int locked = getAttribute(t, "locked", 0);
         if (locked != 0) {
@@ -632,15 +637,20 @@ public class TMXMapReader {
 
         ml.setId(layerId);
 
-        final int offsetX = getAttribute(t, "x", 0);
-        final int offsetY = getAttribute(t, "y", 0);
+        final double offsetX = getDoubleAttribute(t, "x", 0.0D);
+        final double offsetY = getDoubleAttribute(t, "y", 0.0D);
         final int visible = getAttribute(t, "visible", 1);
         String opacity = getAttributeValue(t, "opacity");
+        String tintColor = getAttributeValue(t, "tintcolor");
 
         ml.setName(getAttributeValue(t, "name"));
 
         if (opacity != null) {
             ml.setOpacity(Float.parseFloat(opacity));
+        }
+
+        if (tintColor != null) {
+            ml.setTintColor(tintColor);
         }
 
         readProperties(t.getChildNodes(), ml.getProperties());
@@ -745,7 +755,7 @@ public class TMXMapReader {
 
         // This is done at the end, otherwise the offset is applied during
         // the loading of the tiles.
-        ml.setOffset(offsetX, offsetY);
+        ml.setOffset((int) offsetX, (int) offsetY);
 
         // Invisible layers are automatically locked, so it is important to
         // set the layer to potentially invisible _after_ the layer data is

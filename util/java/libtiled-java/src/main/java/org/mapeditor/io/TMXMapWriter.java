@@ -439,6 +439,10 @@ public class TMXMapWriter {
         if (opacity != null && opacity < 1.0f) {
             w.writeAttribute("opacity", opacity);
         }
+        String tintColor = l.getTintColor();
+        if (tintColor != null && !tintColor.equalsIgnoreCase("tintcolor")) {
+            w.writeAttribute("tintcolor", tintColor);
+        }
 
         if (l.getOffsetX() != null && l.getOffsetX() != 0) {
             w.writeAttribute("offsetx", l.getOffsetX());
