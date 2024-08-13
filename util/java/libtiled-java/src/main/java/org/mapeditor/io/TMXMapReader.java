@@ -34,8 +34,6 @@ package org.mapeditor.io;
 import java.awt.Color;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Path2D;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -535,9 +533,14 @@ public class TMXMapReader {
             return g;
         }
 
-        final double offsetX = getDoubleAttribute(t, "x", 0.0D);
-        final double offsetY = getDoubleAttribute(t, "y", 0.0D);
-        g.setOffset((int) offsetX, (int) offsetY);
+        final int x = getAttribute(t, "x", 0);
+        final int y = getAttribute(t, "y", 0);
+        g.setOffset(x, y);
+
+        final double offsetX = getDoubleAttribute(t, "offsetx", 0.0D);
+        final double offsetY = getDoubleAttribute(t, "offsety", 0.0D);
+        g.setOffsetX(offsetX);
+        g.setOffsetY(offsetY);
 
         String opacity = getAttributeValue(t, "opacity");
         if (opacity != null) {
@@ -595,9 +598,14 @@ public class TMXMapReader {
             return og;
         }
 
-        final double offsetX = getDoubleAttribute(t, "x", 0.0D);
-        final double offsetY = getDoubleAttribute(t, "y", 0.0D);
-        og.setOffset((int) offsetX, (int) offsetY);
+        final int x = getAttribute(t, "x", 0);
+        final int y = getAttribute(t, "y", 0);
+        og.setOffset(x, y);
+
+        final double offsetX = getDoubleAttribute(t, "offsetx", 0.0D);
+        final double offsetY = getDoubleAttribute(t, "offsety", 0.0D);
+        og.setOffsetX(offsetX);
+        og.setOffsetY(offsetY);
 
         final int locked = getAttribute(t, "locked", 0);
         if (locked != 0) {
@@ -646,8 +654,6 @@ public class TMXMapReader {
 
         ml.setId(layerId);
 
-        final double offsetX = getDoubleAttribute(t, "x", 0.0D);
-        final double offsetY = getDoubleAttribute(t, "y", 0.0D);
         final int visible = getAttribute(t, "visible", 1);
         String opacity = getAttributeValue(t, "opacity");
         String tintColor = getAttributeValue(t, "tintcolor");
@@ -762,9 +768,16 @@ public class TMXMapReader {
             }
         }
 
+        final int x = getAttribute(t, "x", 0);
+        final int y = getAttribute(t, "y", 0);
         // This is done at the end, otherwise the offset is applied during
         // the loading of the tiles.
-        ml.setOffset((int) offsetX, (int) offsetY);
+        ml.setOffset(x, y);
+
+        final double offsetX = getDoubleAttribute(t, "offsetx", 0.0D);
+        final double offsetY = getDoubleAttribute(t, "offsety", 0.0D);
+        ml.setOffsetX(offsetX);
+        ml.setOffsetY(offsetY);
 
         // Invisible layers are automatically locked, so it is important to
         // set the layer to potentially invisible _after_ the layer data is
