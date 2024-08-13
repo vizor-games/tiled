@@ -9,7 +9,7 @@
    <image width="32" height="32" source="csvmap_embedded_image_collection_2.png"/>
   </tile>
  </tileset>
- <layer id="1" name="Tile Layer 1" width="3" height="1">
+ <layer id="1" name="Tile Layer 1" width="3" height="1" tintcolor="#e0abfbb4">
   <data encoding="csv">
 1,0,4
 </data>

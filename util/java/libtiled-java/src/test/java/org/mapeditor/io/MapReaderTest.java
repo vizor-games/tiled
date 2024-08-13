@@ -40,6 +40,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import org.mapeditor.core.Map;
+import org.mapeditor.core.MapLayer;
 import org.mapeditor.core.ObjectGroup;
 import org.mapeditor.core.Orientation;
 import org.mapeditor.core.StaggerAxis;
@@ -50,6 +51,7 @@ import org.mapeditor.core.TileSet;
 import javax.xml.bind.JAXBException;
 
 public class MapReaderTest {
+    private static final double ACCURACY_TOLERANCE = 0.00001D;
 
     @Test
     public void testAcceptValidFilenames() throws JAXBException {
@@ -96,15 +98,20 @@ public class MapReaderTest {
         assertEquals(50, bottom.getWidth());
         assertEquals(50, bottom.getHeight());
         assertNotNull(bottom.getTileAt(0, 0));
+        assertEquals("#c6d3dc", bottom.getTintColor());
 
         TileLayer top = (TileLayer) map.getLayer(1);
         assertEquals("Top", top.getName());
         assertEquals(50, top.getWidth());
         assertEquals(50, top.getHeight());
         assertEquals(0.49f, top.getOpacity(), 0.01);
+        assertEquals("#e2cb30", top.getTintColor());
+        assertEquals(12.31D, top.getOffsetX(), ACCURACY_TOLERANCE);
+        assertEquals(9.03D, top.getOffsetY(), ACCURACY_TOLERANCE);
 
         ObjectGroup objectGroup = (ObjectGroup) map.getLayer(2);
         assertEquals("Objects", objectGroup.getName());
+        assertEquals("#4c5cf4", objectGroup.getTintColor());
     }
 
     @Test
@@ -133,6 +140,9 @@ public class MapReaderTest {
 
         TileLayer layer = (TileLayer) map.getLayer(0);
         assertNotNull(layer.getTileAt(0, 0));
+        assertEquals("#53b148", layer.getTintColor());
+        assertEquals(0.13D, layer.getOffsetX(), ACCURACY_TOLERANCE);
+        assertEquals(0.01D, layer.getOffsetY(), ACCURACY_TOLERANCE);
     }
 
     @Test
@@ -163,6 +173,7 @@ public class MapReaderTest {
         TileLayer layer = (TileLayer) map.getLayer(0);
         assertNotNull(layer.getTileAt(0, 0));
         assertNotNull(layer.getTileAt(2, 0));
+        assertEquals("#e0abfbb4", layer.getTintColor());
 
         TileSet tileset = layer.getMap().getTileSets().get(0);
         assertEquals(3, tileset.getMaxTileId());
@@ -194,6 +205,7 @@ public class MapReaderTest {
 
         TileLayer layer = (TileLayer) map.getLayer(0);
         assertNotNull(layer.getTileAt(0, 0));
+        assertEquals("#36b8af99", layer.getTintColor());
     }
 
     @Test(expected = IOException.class)
@@ -300,6 +312,11 @@ public class MapReaderTest {
         assertEquals(StaggerAxis.Y, map.getStaggerAxis());
         assertEquals(StaggerIndex.ODD, map.getStaggerIndex());
         assertEquals(1, map.getLayerCount());
+
+        MapLayer layer = map.getLayer(0);
+        assertEquals("#f2d0c5", layer.getTintColor());
+        assertEquals(1.99D, layer.getOffsetX(), ACCURACY_TOLERANCE);
+        assertEquals(10.01D, layer.getOffsetY(), ACCURACY_TOLERANCE);
     }
 
     @Test

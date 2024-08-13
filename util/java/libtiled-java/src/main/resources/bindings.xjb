@@ -88,6 +88,9 @@
                     </jxb:javadoc>
                 </jxb:property>
             </jxb:bindings>
+            <jxb:bindings node="xs:attribute[@name='tintcolor']">
+                <jxb:property name="tintColor"/>
+            </jxb:bindings>
             <jxb:bindings node="xs:attribute[@name='visible']">
                 <jxb:property>
                     <jxb:javadoc>

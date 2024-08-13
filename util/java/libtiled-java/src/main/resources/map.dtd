@@ -138,6 +138,7 @@
   x           CDATA   #IMPLIED
   y           CDATA   #IMPLIED
   opacity     CDATA   #IMPLIED
+  tintcolor   CDATA   #IMPLIED
   visible     (0 | 1) #IMPLIED
   locked      (0 | 1) #IMPLIED
 >
@@ -151,6 +152,7 @@
   x           CDATA   #IMPLIED
   y           CDATA   #IMPLIED
   opacity     CDATA   #IMPLIED
+  tintcolor   CDATA   #IMPLIED
   visible     (0 | 1) #IMPLIED
   locked      (0 | 1) #IMPLIED
 >
