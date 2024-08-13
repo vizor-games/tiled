@@ -535,9 +535,9 @@ public class TMXMapReader {
             return g;
         }
 
-        final int offsetX = getAttribute(t, "x", 0);
-        final int offsetY = getAttribute(t, "y", 0);
-        g.setOffset(offsetX, offsetY);
+        final double offsetX = getDoubleAttribute(t, "x", 0.0D);
+        final double offsetY = getDoubleAttribute(t, "y", 0.0D);
+        g.setOffset((int) offsetX, (int) offsetY);
 
         String opacity = getAttributeValue(t, "opacity");
         if (opacity != null) {
